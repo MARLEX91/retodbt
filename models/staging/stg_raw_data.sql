@@ -5,6 +5,7 @@ with source_data as (
         category_id,
         video_id,
         title,
+        channel_title,
         CAST(published_at AS DATE) AS published_at,
         CAST(view_count AS BIGINT) AS view_count,
         CAST(like_count AS BIGINT) AS like_count,

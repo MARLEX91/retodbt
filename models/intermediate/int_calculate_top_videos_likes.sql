@@ -7,7 +7,7 @@ WITH group_data AS (
         published_at,
         like_count,
         ROW_NUMBER() OVER (PARTITION BY region_code ORDER BY like_count DESC) AS rank
-    FROM {{ref('load_data')}}
+    FROM {{ref('stg_raw_data')}}
 )
 SELECT *
 FROM group_data
