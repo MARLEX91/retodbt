@@ -17,7 +17,7 @@ WITH daily_aggregates AS(
         total_comments
     FROM {{ ref('int_popularity_growth_over_time') }}
     {% if is_incremental() %}
-    WHERE published_at >= (SELECT MAX(published_at) FROM {{ this }})
+    WHERE published_at > (SELECT MAX(published_at) FROM {{ this }})
     {% endif %}
     
 )
@@ -26,3 +26,4 @@ SELECT *
 FROM daily_aggregates
 ORDER BY published_at DESC
 
+--hitorico de videos subidos y su popularidad

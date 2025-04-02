@@ -19,3 +19,4 @@ SELECT *
 FROM greater_engagement
 ORDER BY like_ratio DESC, comment_ratio DESC
 LIMIT 10
+-- Identifica los videos con mejor interacción en relación con su número de vistas.
