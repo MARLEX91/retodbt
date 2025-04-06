@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  dbt:
+    build: .
+    volumes:
+      - .:/app  # Sincroniza el código del proyecto
+      - ./data:/data  # Persistencia de la base de datos
+      - ~/.dbt:/root/.dbt  # Usa el mismo perfil en la máquina y en Docker
+    working_dir: /app
+    entrypoint: ["dbt"]

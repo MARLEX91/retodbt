@@ -15,3 +15,5 @@ WITH result AS (
 
 SELECT *
 FROM result
+
+--videos mas populares agrupados por region

@@ -10,8 +10,8 @@ with source_data as (
         CAST(view_count AS BIGINT) AS view_count,
         CAST(like_count AS BIGINT) AS like_count,
         CAST(comment_count AS BIGINT) AS comment_count
-    FROM read_csv_auto('data/part-00000-de475d8c-7311-4884-8001-d453a713dcc8-c000.csv')
-    WHERE published_at ~ '^\d{4}-\d{2}-\d{2}$'
+    FROM read_csv_auto('data/part-00000-f48070a2-919a-49f0-9cfd-a0398f8b4662-c000.csv')
+    WHERE published_at IS NOT NULL
 )
 
 SELECT *
