@@ -4,8 +4,8 @@ WITH popularity_growth_over_time AS(
         COUNT(video_id) AS videos_subidos, 
         SUM(view_count) AS total_views, 
         SUM(like_count) AS total_likes, 
-        SUM(comment_count) AS total_comments
-    FROM {{ ref('stg_raw_data') }}
+        SUM(comment_count) AS total_comments,
+    FROM {{ ref('int_category_id_data_join') }}
     GROUP BY published_at
     
 )

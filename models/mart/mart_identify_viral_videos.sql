@@ -5,7 +5,7 @@
 
 {{ config(
     materialized='incremental',
-    unique_key='video_id',
+    unique_key=['video_id', 'date_of_ingestion'],
     on_conflict='update'
 ) }}
 
@@ -18,10 +18,11 @@ WITH viral_analysis AS (
         like_count, 
         comment_count, 
         published_at,
-        views_per_day
+        views_per_day,
+        CURRENT_DATE AS date_of_ingestion
     FROM {{ ref('int_calculate_identify_viral_videos') }}
     {% if is_incremental() %}
-    WHERE published_at > (SELECT MAX(published_at) FROM {{ this }})
+    WHERE date_of_ingestion >= (SELECT MAX(date_of_ingestion) FROM {{ this }})
     {% endif %}
 )
 
@@ -29,4 +30,4 @@ SELECT * FROM viral_analysis
 ORDER BY views_per_day DESC
 
 --promedio de vistas por día desde su fecha de publicación
--- para detectar videos virales en una región especifica.
+-- para detectar videos virales en una región especifica (Colombia) .

@@ -6,8 +6,9 @@ WITH group_data AS (
         title,
         published_at,
         like_count,
+        category_name,
         ROW_NUMBER() OVER (PARTITION BY region_code ORDER BY like_count DESC) AS rank
-    FROM {{ref('stg_raw_data')}}
+    FROM {{ref('int_category_id_data_join')}}
 )
 SELECT *
 FROM group_data
